@@ -2,9 +2,14 @@ const { response } = require('express');
 const express = require('express');
 const shortid = require('shortid');
 
-let hubs = [];
+
+
+
 
 const server = express();
+server.use(express.json());
+
+let hubs = [];
 
 server.get('/', (request, response) => {
     response.json({hello: 'world'});
@@ -40,7 +45,7 @@ server.put('/api/hubs/:id', (request, response) => {
         hubs[index] = changes;
         response.status(200).json(hubs[index]);
     }else {
-        response.status(404).json({nessage: "hub not found"};)
+        response.status(404).json({nessage: "hub not found"})
     }
     
 })
